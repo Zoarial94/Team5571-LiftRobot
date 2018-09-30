@@ -15,22 +15,48 @@ package org.usfirst.frc.team5571.robot;
  */
 public class RobotMap {
 	
+	/**
+	 * NAMING
+	 * 
+	 * Naming should be structured like this in all caps:
+	 *   [NameOfSystem]_[Location][Device]
+	 * 
+	 * Examples:
+	 *    OUTPUT:
+	 *       DRIVETRAIN_LEFTMOTOR =   0
+     *       DRIVETRAIN_RIGHTMOTOR =  1
+     *    INPUT:
+     *       DRIVETRAIN_LEFTENCODER =  0
+     *       DRIVETRAIN_RIGHTENCODER = 1
+	 * 
+	 */
+	
 	//USB PORTS
 	public static final int CONTROLLER = 0;
 	
-	//PMW OUT - 7 TOTAL
-	//4 wheels
-	//1 pulley for elevator/carriage
+	//PMW OUT
+	//4 for wheels
+	//1 for pulley for elevator/carriage
 	//2 for claw
-	
 						   	//Each motor output will control 2 motors in hardware
-	public static final int LEFTMOTOR =       0,
-                            RIGHTMOTOR =      1,
+	public static final int DRIVETRAIN_LEFTMOTOR =       0,
+                            DRIVETRAIN_RIGHTMOTOR =      1,
                             
                             //Lifts carriage and elevator
-                            ELEVATORMOTOR =   2,
+                            ELEVATOR_MOTOR =   2,
                             
                             //Right and left side of the claw
-                            CLAWLEFT =        3,
-                            CLAWRIGHT =       4;
+                            CLAW_LEFTMOTOR =        3,
+                            CLAW_RIGHTMOTOR =       4;
+	
+	//DIGITAL INPUT
+	//2 for Elevator (Limit Switches)
+	public static final int ELEVATOR_TOPSWITCH = 0,
+							ELEVATOR_BOTTOMSWITCH = 1;
+	
+	//ANALOG INPUT
+	//2 for Claw
+	public static final int CLAW_LEFTPOT = 0,
+							CLAW_RIGHTPOT = 1;
+	
 }

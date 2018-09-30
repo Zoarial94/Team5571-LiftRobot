@@ -6,9 +6,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-/**
- * An example subsystem.  You can replace me with your own Subsystem.
- */
 public class DriveTrainSubsystem extends Subsystem {
 	
 	DifferentialDrive drive;
@@ -16,8 +13,8 @@ public class DriveTrainSubsystem extends Subsystem {
 	public DriveTrainSubsystem() {
 		
 		drive = new DifferentialDrive(
-    			new Spark(RobotMap.LEFTMOTOR),
-    			new Spark(RobotMap.RIGHTMOTOR)
+    			new Spark(RobotMap.DRIVETRAIN_LEFTMOTOR),
+    			new Spark(RobotMap.DRIVETRAIN_RIGHTMOTOR)
     			);
 		
 	}
