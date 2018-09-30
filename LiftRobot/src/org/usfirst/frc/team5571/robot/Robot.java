@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5571.robot.subsystems.*;
+import org.usfirst.frc.team5571.robot.commands.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,14 +24,14 @@ import org.usfirst.frc.team5571.robot.subsystems.*;
  */
 public class Robot extends TimedRobot {
 	//Subsystems
-	public static DriveTrainSubsystem m_DriveTrainSub = new DriveTrainSubsystem();
-	public static ElevatorSubsystem m_ElevatorSub = new ElevatorSubsystem();
-	public static ClawSubsystem m_ClawSub = new ClawSubsystem();
+	public static DriveTrainSubsystem m_DriveTrainSub;
+	public static ElevatorSubsystem m_ElevatorSub;
+	public static ClawSubsystem m_ClawSub;
 	
 	public static OI m_oi;
 
 	Command m_autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	SendableChooser<Command> m_chooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -38,9 +39,22 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
+		SmartDashboard.putData(Scheduler.getInstance());
+		
+		m_chooser = new SendableChooser<>();
+		
+		m_DriveTrainSub = new DriveTrainSubsystem();
+		m_ElevatorSub = new ElevatorSubsystem();
+		m_ClawSub = new ClawSubsystem();
 		m_oi = new OI();
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
+		
+		SmartDashboard.putData(m_DriveTrainSub);
+		SmartDashboard.putData(m_ElevatorSub);
+		SmartDashboard.putData(m_ClawSub);
+		
+		m_chooser.addObject("Raise Elevator", new ElevatorRaise());
+		m_chooser.addObject("Lower Elevator", new ElevatorLower());
+		SmartDashboard.putData("Auto Mode", m_chooser);
 	}
 
 	/**
@@ -72,13 +86,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		m_autonomousCommand = m_chooser.getSelected();
-
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
 
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
