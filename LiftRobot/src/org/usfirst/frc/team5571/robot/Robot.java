@@ -55,6 +55,9 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("Raise Elevator", new ElevatorRaise());
 		m_chooser.addObject("Lower Elevator", new ElevatorLower());
 		SmartDashboard.putData("Auto Mode", m_chooser);
+		
+		m_oi.LB.whileHeld(new ElevatorLower());
+		m_oi.RB.whileHeld(new ElevatorRaise());
 	}
 
 	/**

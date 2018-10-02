@@ -37,7 +37,7 @@ public class ElevatorSubsystem extends Subsystem {
 		//Set motor
 		liftMotor = new Spark(RobotMap.ELEVATOR_MOTOR);
 		//Set default speed
-		speed = 0.5;
+		speed = 0.2;
 		
 		//Set Digital Inputs
 		limitSwitchTop = new DigitalInput(RobotMap.ELEVATOR_TOPSWITCH);

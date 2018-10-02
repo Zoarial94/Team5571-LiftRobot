@@ -20,8 +20,10 @@ public class ElevatorLower extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	if(SUB.canMoveDown()) {
+    		System.out.println("Lowering Elevator");
 			SUB.lowerElevator();
 		}
+    	System.out.println("NOT Lowering Elevator, switch it set");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -30,7 +32,11 @@ public class ElevatorLower extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !SUB.canMoveDown();
+    	if(SUB.canMoveDown()) {
+    		return false;
+    	}
+    	System.out.println("Finished Lowering Elevator up");
+    	return true;
     }
 
     // Called once after isFinished returns true
@@ -41,6 +47,7 @@ public class ElevatorLower extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	System.out.println("Elevator Raising Inturrupted");
     	end();
     }
 }
