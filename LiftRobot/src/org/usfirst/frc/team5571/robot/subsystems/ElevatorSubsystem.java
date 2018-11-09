@@ -25,8 +25,8 @@ public class ElevatorSubsystem extends Subsystem {
 	DigitalInput limitSwitchBottom;
 	
 	//Counters to Detect When Switch is Hit
-	Counter counterTop;
-	Counter counterBottom;
+	//Counter counterTop;
+	//Counter counterBottom;
 	
 	//Keep Track of When Switch is Hit
 	boolean canMoveUp;
@@ -41,10 +41,12 @@ public class ElevatorSubsystem extends Subsystem {
 		
 		//Set Digital Inputs
 		limitSwitchTop = new DigitalInput(RobotMap.ELEVATOR_TOPSWITCH);
-		limitSwitchTop = new DigitalInput(RobotMap.ELEVATOR_TOPSWITCH);
+		limitSwitchBottom = new DigitalInput(RobotMap.ELEVATOR_BOTTOMSWITCH);
 		//Set Counters for Limit Switches
-		counterTop = new Counter(limitSwitchTop);
-		counterBottom = new Counter(limitSwitchBottom);
+		//counterTop = new Counter(limitSwitchTop);
+		//counterBottom = new Counter(limitSwitchBottom);
+		canMoveUp = limitSwitchTop.get();
+		canMoveDown = limitSwitchBottom.get();
 	}
 	
 	//Raise Elevator
@@ -70,39 +72,18 @@ public class ElevatorSubsystem extends Subsystem {
 		this.speed = speed;
 	}
 	
-	public void startCounter() {
-		counterTop.reset();
-		counterBottom.reset();
-	}
-	
 	//Get Speed
 	public double getSpeed() {
 		return speed;
 	}
 	
 	public boolean canMoveUp() {
-		if(canMoveUp) {
-			if(counterTop.get() > 0) {
-				canMoveUp = false;
-				return false;
-			} else {
-				return true;
-			}
-		}
-		return false;
+		return limitSwitchTop.get();
 		
 	}
 	
 	public boolean canMoveDown() {
-		if(canMoveDown) {
-			if(counterBottom.get() > 0) {
-				canMoveDown = false;
-				return false;
-			} else {
-				return true;
-			}
-		}
-		return false;
+		return limitSwitchBottom.get();
 	}
 	
     public void initDefaultCommand() {

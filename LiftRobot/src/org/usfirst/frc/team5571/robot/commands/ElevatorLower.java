@@ -22,6 +22,7 @@ public class ElevatorLower extends Command {
     	if(SUB.canMoveDown()) {
     		System.out.println("Lowering Elevator");
 			SUB.lowerElevator();
+			return;
 		}
     	System.out.println("NOT Lowering Elevator, switch it set");
     }

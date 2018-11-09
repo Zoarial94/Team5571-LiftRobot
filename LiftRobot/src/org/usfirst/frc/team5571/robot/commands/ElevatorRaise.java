@@ -22,6 +22,7 @@ public class ElevatorRaise extends Command {
     	if(SUB.canMoveUp()) {
     		System.out.println("Raising Elevator");
 			SUB.raiseElevator();
+			return;
 		}
     	System.out.println("NOT Raising Elevator, switch it set");
     }
