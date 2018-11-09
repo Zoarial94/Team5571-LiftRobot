@@ -23,11 +23,15 @@ public class RobotMap {
 	 * 
 	 * Examples:
 	 *    OUTPUT:
-	 *       DRIVETRAIN_LEFTMOTOR =   0
-     *       DRIVETRAIN_RIGHTMOTOR =  1
+	 *    
+	 *       public static final int DRIVETRAIN_LEFTMOTOR =   0
+     *       public static final int DRIVETRAIN_RIGHTMOTOR =  1
+     *       
      *    INPUT:
-     *       DRIVETRAIN_LEFTENCODER =  0
-     *       DRIVETRAIN_RIGHTENCODER = 1
+     *    
+     *       public static final int DRIVETRAIN_LEFTENCODER =  0
+     *       public static final int DRIVETRAIN_RIGHTENCODER = 1
+     *       
 	 * 
 	 */
 	
@@ -51,8 +55,18 @@ public class RobotMap {
 	
 	//DIGITAL INPUT
 	//2 for Elevator (Limit Switches)
+	//2 encoders and 2 inputs for ONE rotary encoder (4 total)
+	//
 	public static final int ELEVATOR_TOPSWITCH = 0,
-							ELEVATOR_BOTTOMSWITCH = 1;
+							ELEVATOR_BOTTOMSWITCH = 1,
+							
+							//Left Encoder
+							DRIVETRAIN_LEFTENCODER_A = 2,
+							DRIVETRAIN_LEFTENCODER_B = 3,
+							
+							//Right Encoder
+							DRIVETRAIN_RIGHTENCODER_A = 4,
+							DRIVETRAIN_RIGHTENCODER_B = 5;
 	
 	//ANALOG INPUT
 	//2 for Claw

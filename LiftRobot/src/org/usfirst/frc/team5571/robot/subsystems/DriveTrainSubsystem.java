@@ -5,10 +5,14 @@ import org.usfirst.frc.team5571.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import org.usfirst.frc.team5571.robot.commands.*;
+import edu.wpi.first.wpilibj.Encoder;
 
 public class DriveTrainSubsystem extends Subsystem {
 	
 	DifferentialDrive drive;
+	
+	Encoder leftEncoder, rightEncoder;
 	
 	public DriveTrainSubsystem() {
 		
@@ -17,6 +21,35 @@ public class DriveTrainSubsystem extends Subsystem {
     			new Spark(RobotMap.DRIVETRAIN_RIGHTMOTOR)
     			);
 		
+		//Check https://wpilib.screenstepslive.com/s/currentCS/m/java/l/599717-encoders-measuring-rotation-of-a-wheel-or-other-shaft
+		//for info on encoders
+		
+		leftEncoder = new Encoder(RobotMap.DRIVETRAIN_LEFTENCODER_A,  RobotMap.DRIVETRAIN_LEFTENCODER_B,
+								  false, Encoder.EncodingType.k4X); //Initialize Encoder
+		
+		leftEncoder.setMaxPeriod(.1);           //Time in seconds before timeout
+		leftEncoder.setMinRate(10);   			//Rate considered stopped
+		leftEncoder.setDistancePerPulse(5);		//Distance per pulse, based off of gear ratios
+		leftEncoder.setReverseDirection(true); 	
+		leftEncoder.setSamplesToAverage(7);		//???
+		
+		rightEncoder = new Encoder(RobotMap.DRIVETRAIN_LEFTENCODER_A,  RobotMap.DRIVETRAIN_LEFTENCODER_A,
+								   false, Encoder.EncodingType.k4X);
+		
+		rightEncoder.setMaxPeriod(.1); 
+		rightEncoder.setMinRate(10);
+		rightEncoder.setDistancePerPulse(5);
+		rightEncoder.setReverseDirection(false);
+		rightEncoder.setSamplesToAverage(7);
+		
+	}
+	
+	public double getDistanceLeft() {
+		return leftEncoder.getDistance();
+	}
+	
+	public double getDistanceRight() {
+		return rightEncoder.getDistance();
 	}
 	
 	public void arcadeDrive(double x, double y) {
@@ -24,7 +57,6 @@ public class DriveTrainSubsystem extends Subsystem {
     }
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new DriveTrainDrive());
 	}
 }

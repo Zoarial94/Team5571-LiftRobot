@@ -3,7 +3,6 @@ package org.usfirst.frc.team5571.robot.commands;
 import org.usfirst.frc.team5571.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 /**
  *
@@ -23,8 +22,9 @@ public class DriveTrainDrive extends Command {
     	double sensitivity = 0.6;
     	Robot.m_DriveTrainSub.arcadeDrive(
     			Robot.m_oi.controller.getY() * sensitivity, 
-    			Robot.m_oi.controller.getY() * sensitivity 
+    			Robot.m_oi.controller.getX() * sensitivity 
     			);
+    	System.out.println("DISTANCE: " + Robot.m_DriveTrainSub.getDistanceLeft());
     }
 
     // Make this return true when this Command no longer needs to run execute()
