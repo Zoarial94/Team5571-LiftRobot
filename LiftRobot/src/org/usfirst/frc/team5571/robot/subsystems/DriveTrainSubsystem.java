@@ -33,7 +33,7 @@ public class DriveTrainSubsystem extends Subsystem {
 		leftEncoder.setReverseDirection(true); 	
 		leftEncoder.setSamplesToAverage(7);		//???
 		
-		rightEncoder = new Encoder(RobotMap.DRIVETRAIN_LEFTENCODER_A,  RobotMap.DRIVETRAIN_LEFTENCODER_A,
+		rightEncoder = new Encoder(RobotMap.DRIVETRAIN_RIGHTENCODER_A,  RobotMap.DRIVETRAIN_RIGHTENCODER_B,
 								   false, Encoder.EncodingType.k4X);
 		
 		rightEncoder.setMaxPeriod(.1); 
