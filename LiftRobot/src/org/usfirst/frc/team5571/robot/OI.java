@@ -19,5 +19,7 @@ public class OI {
 	public XboxController controller = new XboxController(RobotMap.CONTROLLER);
 	
 	public JoystickButton LB = new JoystickButton(controller, 5),
-				  		  RB = new JoystickButton(controller, 6);
+				  		  RB = new JoystickButton(controller, 6),
+						  LT = new JoystickButton(controller, 9),
+						  RT = new JoystickButton(controller, 10);
 }

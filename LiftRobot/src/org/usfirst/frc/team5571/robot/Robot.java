@@ -58,6 +58,8 @@ public class Robot extends TimedRobot {
 		
 		m_oi.LB.whileHeld(new ElevatorLower());
 		m_oi.RB.whileHeld(new ElevatorRaise());
+		m_oi.LT.whileHeld(new ClawDriveOut());
+		m_oi.RT.whileHeld(new ClawDriveIn());
 	}
 
 	/**
