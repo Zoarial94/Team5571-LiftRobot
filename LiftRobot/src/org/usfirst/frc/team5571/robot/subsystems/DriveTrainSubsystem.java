@@ -8,11 +8,15 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import org.usfirst.frc.team5571.robot.commands.*;
 import edu.wpi.first.wpilibj.Encoder;
 
+//import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 public class DriveTrainSubsystem extends Subsystem {
 	
 	DifferentialDrive drive;
 	
 	Encoder leftEncoder, rightEncoder;
+	
+	double sensitivity;
 	
 	public DriveTrainSubsystem() {
 		
@@ -42,6 +46,8 @@ public class DriveTrainSubsystem extends Subsystem {
 		rightEncoder.setReverseDirection(false);
 		rightEncoder.setSamplesToAverage(7);
 		
+		sensitivity = 0.6;
+		
 	}
 	
 	public double getDistanceLeft() {
@@ -53,8 +59,20 @@ public class DriveTrainSubsystem extends Subsystem {
 	}
 	
 	public void arcadeDrive(double x, double y) {
-    	drive.arcadeDrive(x, y);
+    	drive.arcadeDrive(x * sensitivity, y * sensitivity);
     }
+	
+	public void setSensitivity(double sen) {
+		if(sen > 1 || sen < -1) {
+			sensitivity = 1;
+		} else {
+			sensitivity = Math.abs(sen);
+		}
+	}
+	
+	public double getSensitivity() {
+		return sensitivity;
+	}
 
 	public void initDefaultCommand() {
 		setDefaultCommand(new DriveTrainDrive());

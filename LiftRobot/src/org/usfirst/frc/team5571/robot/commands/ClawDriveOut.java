@@ -3,7 +3,7 @@ import org.usfirst.frc.team5571.robot.Robot;
 import org.usfirst.frc.team5571.robot.subsystems.ClawSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 /*
- * use this command to make the claw drive out the conveyor belt.
+ * use this command to make the claw drive out the conveyer belt.
  */
 public class ClawDriveOut extends Command
 {

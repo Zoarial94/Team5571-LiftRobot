@@ -20,6 +20,5 @@ public class OI {
 	
 	public JoystickButton LB = new JoystickButton(controller, 5),
 				  		  RB = new JoystickButton(controller, 6),
-						  LT = new JoystickButton(controller, 9),
-						  RT = new JoystickButton(controller, 10);
+						  X = new JoystickButton(controller, 3);
 }

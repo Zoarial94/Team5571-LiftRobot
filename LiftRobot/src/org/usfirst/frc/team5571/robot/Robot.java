@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5571.robot.subsystems.*;
 import org.usfirst.frc.team5571.robot.commands.*;
+import com.ctre.phoenix.motorcontrol.can.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,8 +24,10 @@ import org.usfirst.frc.team5571.robot.commands.*;
  * project.
  */
 public class Robot extends TimedRobot {
+	
 	//Subsystems
 	public static DriveTrainSubsystem m_DriveTrainSub;
+	public static DriveTrainSubsystem m_DriveTrainEncodersSub;
 	public static ElevatorSubsystem m_ElevatorSub;
 	public static ClawSubsystem m_ClawSub;
 	
@@ -32,6 +35,7 @@ public class Robot extends TimedRobot {
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser;
+	WPI_TalonSRX testMotor;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -51,6 +55,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData(m_DriveTrainSub);
 		SmartDashboard.putData(m_ElevatorSub);
 		SmartDashboard.putData(m_ClawSub);
+		SmartDashboard.putData(new ClawDriveIn());
 		
 		m_chooser.addObject("Raise Elevator", new ElevatorRaise());
 		m_chooser.addObject("Lower Elevator", new ElevatorLower());
@@ -58,8 +63,13 @@ public class Robot extends TimedRobot {
 		
 		m_oi.LB.whileHeld(new ElevatorLower());
 		m_oi.RB.whileHeld(new ElevatorRaise());
+		m_oi.X.whenPressed(new SetMaximumOverdrive());
+		m_oi.X.whenReleased(new SetNormalSpeed());
+		/*
 		m_oi.LT.whileHeld(new ClawDriveOut());
-		m_oi.RT.whileHeld(new ClawDriveIn());
+		m_oi.RT.whileHeld(new ClawDriveIn());*/
+		
+		testMotor = new WPI_TalonSRX(0);
 	}
 
 	/**
@@ -69,7 +79,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+		testMotor.set(0);
 	}
 
 	@Override
@@ -115,6 +125,7 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
+		testMotor.set(1);
 	}
 
 	/**

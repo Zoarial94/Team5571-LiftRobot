@@ -26,11 +26,11 @@ public class RobotMap {
 	 *    
 	 *       public static final int DRIVETRAIN_LEFTMOTOR   =  0,
      * 								 DRIVETRAIN_RIGHTMOTOR  =  1,
-     * 								 ELEVATOR_MOTOR         =  2;   (Has no location)
+     * 								 ELEVATOR_MOTOR         =  2;   (Has no location so just use 'MOTOR')
      *       
      *    INPUT:
      *    
-     *       public static final int DRIVETRAIN_LEFTENCODER =  0,
+     *       public static final int DRIVETRAIN_LEFTENCODER  = 0,
      *								 DRIVETRAIN_RIGHTENCODER = 1;
      *       
 	 * 
@@ -44,31 +44,40 @@ public class RobotMap {
 	
 	/*
 	 * PMW OUT
-	 * 2 for wheels
+	 * 2 for wheels **WILL CHANGE TO CAN**
 	 * 1 for pulley for elevator/carriage
 	 * 2 for claw
 	 */
 						   	//Each motor output will control 2 motors in hardware
-	public static final int DRIVETRAIN_LEFTMOTOR =       0,
-                            DRIVETRAIN_RIGHTMOTOR =      1,
+	public static final int DRIVETRAIN_LEFTMOTOR    = 0,
+                            DRIVETRAIN_RIGHTMOTOR   = 1,
                             
                             //Lifts carriage and elevator
-                            ELEVATOR_MOTOR =   2,
+                            ELEVATOR_MOTOR          = 2,
                             
                             //Right and left side of the claw
-                            CLAW_LEFTMOTOR =        3,
-                            CLAW_RIGHTMOTOR =       4;
+                            CLAW_LEFTMOTOR          = 3,
+                            CLAW_RIGHTMOTOR         = 4;
+	
+	/*
+	 * CAN Communications
+	 * 1 for testing
+	 */
+	
+	public static final int DRIVETRAIN_RIGHTENCODMOTOR   = 0,
+							DRIVETRAIN_LEFTENCODMOTOR    = 1;
+	
 	/*
 	 * DIGITAL INPUT
 	 * 2 for Elevator (Limit Switches)
 	 * 2 encoders and 2 inputs for ONE rotary encoder (4 total)
 	 */
-	public static final int ELEVATOR_TOPSWITCH = 0,
-							ELEVATOR_BOTTOMSWITCH = 1,
+	public static final int ELEVATOR_TOPSWITCH        = 0,
+							ELEVATOR_BOTTOMSWITCH     = 1,
 							
 							//Left Encoder
-							DRIVETRAIN_LEFTENCODER_A = 2,
-							DRIVETRAIN_LEFTENCODER_B = 3,
+							DRIVETRAIN_LEFTENCODER_A  = 2,
+							DRIVETRAIN_LEFTENCODER_B  = 3,
 							
 							//Right Encoder
 							DRIVETRAIN_RIGHTENCODER_A = 4,
@@ -78,7 +87,7 @@ public class RobotMap {
 	 * 2 for Claw
 	 */
 							//POT is short for potentiometer
-	public static final int CLAW_LEFTPOT = 0,
-							CLAW_RIGHTPOT = 1;
+	public static final int CLAW_LEFTPOT   = 0,
+							CLAW_RIGHTPOT  = 1;
 	
 }
